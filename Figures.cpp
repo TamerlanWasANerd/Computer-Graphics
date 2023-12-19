@@ -129,7 +129,7 @@ void Figures::move(arguments coordinate, arguments sign)
 {
 	clearTransformationMatrix();
 
-	float increment = (sign == PLUS) ? 10 : -10;
+	float increment = (sign == PLUS) ? 25 : -25;
 
 	transformationMatrix[3][coordinate] = increment;
 
