@@ -157,7 +157,7 @@ void Figures::rotate(arguments coordinate, arguments sign)
 {
 	clearTransformationMatrix();
 	center();
-	int fi = (sign == PLUS) ? 5 : -5;
+	int fi = (sign == PLUS) ? 20 : -20;
 
 	switch (coordinate)
 	case X:

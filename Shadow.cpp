@@ -10,9 +10,9 @@ Shadow::Shadow() : RobertsAlgorithm(0, 0, 10000)
 
 void Shadow::calculatePlaneCoefficients()
 {
-	int xPlane[3] = {500,	600,	500},
-		yPlane[3] = {500,	500,	550},
-		zPlane[3] = {50,	50,		200};
+	int xPlane[3] = { 500,	600,	500 },
+		yPlane[3] = { 500,	500,	550 },
+		zPlane[3] = { 50,	50,		200 };
 
 	int delta10[3], delta20[3];
 	delta10[0] = xPlane[1] - xPlane[0];
@@ -48,33 +48,33 @@ void Shadow::paint()
 	}
 
 	for (int i = 0; i < 4; i++)
-	{
 		for (int j = 0; j < 4; j++)
 			transformationMatrix[i][j] = 0;
-	}
 
 	// oblique
-	transformationMatrix[3][3] = 1;
 	int a = 45;
 	transformationMatrix[0][0] = 1;
 	transformationMatrix[1][1] = 1;
+	transformationMatrix[2][2] = 1;
 	transformationMatrix[3][3] = 1;
 	transformationMatrix[0][2] = -cos(a * 3.141592 / 180);
 	transformationMatrix[1][2] = -sin(a * 3.141592 / 180);
 
-	float buf[4], buf1[4];
 	for (int i = 0; i < N; i++)
 	{
-		for (int j = 0; j < 4; j++)
-			buf1[j] = 0;
-		buf[0] = (float)arrayBuf[i][0];
-		buf[1] = (float)arrayBuf[i][1];
-		buf[2] = (float)arrayBuf[i][2];
-		buf[3] = (float)arrayBuf[i][3];
+		float buf1[4] = { 0 };
 
-		for (int k = 0; k < 4; k++)
-			for (int t = 0; t < 4; t++)
-				buf1[k] += buf[t] * transformationMatrix[t][k];
+		float buf[4] =
+		{
+			(float)arrayBuf[i][0],
+			(float)arrayBuf[i][1],
+			(float)arrayBuf[i][2],
+			(float)arrayBuf[i][3]
+		};
+
+		for (int j = 0; j < 4; j++)
+			for (int k = 0; k < 4; k++)
+				buf1[j] += buf[k] * transformationMatrix[k][j];
 
 		arrayBuf[i][0] = (int)buf1[0];
 		arrayBuf[i][1] = (int)buf1[1];

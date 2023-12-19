@@ -14,6 +14,7 @@ private:
 	bool visible(int point1, int point2, int point3);
 	// draws the visible part of a plane
 	void drawVisiblePlane(int num, int point1, int point2, int point3, int point4 = 0);
+
 	void paintXY(int x, int y, COLORREF color);
 
 	COLORREF colors[9];
